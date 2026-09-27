@@ -83,6 +83,7 @@ description: |
 - 基于 abstract 指出 identification 策略的明显问题（如"DiD 但没提平行趋势"、"工具变量来源可疑"）
 - 指出样本范围/数据来源是否过于狭窄（"只用 2018 后 MiFID II 后的数据"）
 - 指出 magnitude 描述是否模糊（"显著增加"但不给数字）
+- 基于 abstract 提炼论文的边际贡献；如果无法判断相对既有文献的增量，就明确写这项结果说明了什么，不能凭空拔高贡献
 - 拿笔记库里相关论文做对比（"和 [[Smith2023]] 的结论相反，谁对？"）
 
 绝对禁止：
@@ -144,6 +145,8 @@ description: |
 - **作者**: ...
 - **链接**: [DOI](https://doi.org/XXXX)
 - **来源**: 📰 {category}（{date}）
+- **数据**: 样本来源、时间区间、国家（abstract 里写到什么写什么；未说明则明确写"abstract 未提及"）
+- **贡献（或者说明了什么）**: 1-2 句话说明相对已有文献新增了什么；如果 abstract 不足以判断边际贡献，就说明该结果揭示了什么事实、机制或经济含义
 
 > ⏪ **再推**：{last_recommend_date} 推荐过
 
@@ -163,6 +166,7 @@ description: |
 - **核心结论**: 1-2 句 + 关键数字（如果 abstract 有给）
 - **识别策略**: 自然实验 / DiD / IV / RDD / 结构估计 / 描述性？基于 abstract 推断，不确定就标"abstract 未明示"
 - **数据**: 样本来源、时间区间、国家（abstract 里写到什么写什么）
+- **贡献（或者说明了什么）**: 1-2 句话说明论文相对已有文献的具体增量，优先写新事实、新机制、新识别或新数据；如果 abstract 不足以判断边际贡献，就明确说明研究结果揭示了什么，禁止套用"填补空白"之类空话
 - **关联笔记**: 用 [[]] 双链关联到笔记库里的相关工作或概念。立场写清楚（build on / refute / extend / 无关）
 - **锐评**: identification 干不干净？magnitude 重要吗？claim 和 evidence 是否对得上？跟已有文献 delta 是什么？{emoji}
 - 💡 **想精读？** 把 PDF 放进 Zotero，然后 `读一下 Zotero 里的 论文标题`    ← 仅"值得看"显示，"必读"会自动生成笔记
@@ -198,7 +202,13 @@ tags: [finance-papers, journal-review, auto-generated]
    - 只保留最近 90 天（金融论文流转慢，比 CS 那边的 30 天放宽）
    - 完整性校验：本期 `### N.` 数量 = 本日新增 + 再推
 
-2. **可选 git**（仅当 `GIT_COMMIT_ENABLED=true` 且 `VAULT_PATH/.git` 存在）：
+2. **内容结构校验**：
+   - 每个 `### N.` 论文块都必须包含 `- **数据**:`
+   - `- **贡献（或者说明了什么）**:` 必须紧跟在 `- **数据**:` 之后
+   - 包括已有笔记、一般和可跳过论文在内，任何论文都不能省略这两项
+   - 如发现缺失或顺序错误，保存前补全并重新检查
+
+3. **可选 git**（仅当 `GIT_COMMIT_ENABLED=true` 且 `VAULT_PATH/.git` 存在）：
 
 ```bash
 cd {VAULT_PATH} && git add "{daily_papers_folder}/YYYY-MM-DD-期刊审稿.md" "{daily_papers_folder}/.history.json" && git commit -m "journal review: YYYY-MM-DD"
